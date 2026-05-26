@@ -25,76 +25,131 @@
   <!-- MAIN CONTENT -->
   <main class="app-main">
 
-    <!-- Greeting -->
-    <section class="greeting">
-      <h2 id="greeting-text">Good day, Mehta ji</h2>
-      <p class="subtitle">Here's what needs your attention today</p>
-    </section>
+    <!-- ========== TODAY SCREEN ========== -->
+    <div id="screen-today" class="screen active">
 
-    <!-- Urgent Action Banner -->
-    <section id="urgent-banner" class="urgent-banner">
-      <div class="urgent-icon">📞</div>
-      <div class="urgent-text">
-        <strong>URGENT ACTION NEEDED</strong>
-        <p id="urgent-count">Loading...</p>
+      <section class="greeting">
+        <h2 id="greeting-text">Good day, Mehta ji</h2>
+        <p class="subtitle">Here's what needs your attention today</p>
+      </section>
+
+      <section id="urgent-banner" class="urgent-banner">
+        <div class="urgent-icon">📞</div>
+        <div class="urgent-text">
+          <strong>URGENT ACTION NEEDED</strong>
+          <p id="urgent-count">Loading...</p>
+        </div>
+      </section>
+
+      <section class="stats-row">
+        <div class="stat-card stat-due">
+          <p class="stat-label">TOTAL DUE</p>
+          <h3 id="total-due">₹0</h3>
+          <p class="stat-sublabel" id="pending-count">0 pending orders</p>
+        </div>
+        <div class="stat-card stat-collected">
+          <p class="stat-label">COLLECTED (MONTH)</p>
+          <h3 id="total-collected">₹0</h3>
+          <p class="stat-sublabel" id="settled-count">0 orders settled</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <h3 class="section-title">📞 Call Today <span class="badge" id="today-badge">0</span></h3>
+        <div id="today-list" class="list"></div>
+      </section>
+
+      <section class="section">
+        <h3 class="section-title">⚠️ Overdue <span class="badge badge-red" id="overdue-badge">0</span></h3>
+        <div id="overdue-list" class="list"></div>
+      </section>
+
+      <section class="section">
+        <h3 class="section-title">🟠 Urgent — Tomorrow's Due <span class="badge" id="urgent-badge">0</span></h3>
+        <div id="urgent-list" class="list"></div>
+      </section>
+
+      <section class="section">
+        <h3 class="section-title">📅 Upcoming Reminders</h3>
+        <div id="upcoming-list" class="list"></div>
+      </section>
+
+    </div>
+
+    <!-- ========== CUSTOMERS SCREEN ========== -->
+    <div id="screen-customers" class="screen">
+
+      <section class="greeting">
+        <h2>Customers</h2>
+        <p class="subtitle"><span id="customer-count">0</span> total customers</p>
+      </section>
+
+      <input type="text" id="customer-search" class="search-input" placeholder="🔍 Search customers...">
+
+      <section class="stats-row">
+        <div class="stat-card stat-due">
+          <p class="stat-label">WITH DUES</p>
+          <h3 id="customers-with-dues">0</h3>
+        </div>
+        <div class="stat-card stat-collected">
+          <p class="stat-label">FULLY PAID</p>
+          <h3 id="customers-fully-paid">0</h3>
+        </div>
+      </section>
+
+      <section class="section">
+        <h3 class="section-title">All Customers</h3>
+        <div id="customer-list" class="list"></div>
+      </section>
+
+    </div>
+
+    <!-- ========== CUSTOMER DETAIL SCREEN ========== -->
+    <div id="screen-customer-detail" class="screen">
+      <button class="back-btn" onclick="showScreen('customers')">← Back to Customers</button>
+      <div id="customer-detail-content"></div>
+    </div>
+
+    <!-- ========== INSIGHTS SCREEN ========== -->
+    <div id="screen-insights" class="screen">
+      <section class="greeting">
+        <h2>Insights</h2>
+        <p class="subtitle">AI-powered business intelligence</p>
+      </section>
+      <div class="empty-state" style="padding:40px 20px;">
+        ✨ AI Insights coming soon (Day 3)<br>
+        <small style="font-size:12px;">Weekly summary + Payment behavior analysis</small>
       </div>
-    </section>
+    </div>
 
-    <!-- Stats Row -->
-    <section class="stats-row">
-      <div class="stat-card stat-due">
-        <p class="stat-label">TOTAL DUE</p>
-        <h3 id="total-due">₹0</h3>
-        <p class="stat-sublabel" id="pending-count">0 pending orders</p>
+    <!-- ========== SETTINGS SCREEN ========== -->
+    <div id="screen-settings" class="screen">
+      <section class="greeting">
+        <h2>Settings</h2>
+        <p class="subtitle">Configure your business</p>
+      </section>
+      <div class="empty-state" style="padding:40px 20px;">
+        ⚙️ Settings coming soon (Day 4)
       </div>
-      <div class="stat-card stat-collected">
-        <p class="stat-label">COLLECTED (MONTH)</p>
-        <h3 id="total-collected">₹0</h3>
-        <p class="stat-sublabel" id="settled-count">0 orders settled</p>
-      </div>
-    </section>
-
-    <!-- Today's Calls -->
-    <section class="section">
-      <h3 class="section-title">📞 Call Today <span class="badge" id="today-badge">0</span></h3>
-      <div id="today-list" class="list"></div>
-    </section>
-
-    <!-- Overdue -->
-    <section class="section">
-      <h3 class="section-title">⚠️ Overdue <span class="badge badge-red" id="overdue-badge">0</span></h3>
-      <div id="overdue-list" class="list"></div>
-    </section>
-
-    <!-- Urgent (Tomorrow) -->
-    <section class="section">
-      <h3 class="section-title">🟠 Urgent — Tomorrow's Due <span class="badge" id="urgent-badge">0</span></h3>
-      <div id="urgent-list" class="list"></div>
-    </section>
-
-    <!-- Upcoming -->
-    <section class="section">
-      <h3 class="section-title">📅 Upcoming Reminders</h3>
-      <div id="upcoming-list" class="list"></div>
-    </section>
+    </div>
 
   </main>
 
   <!-- BOTTOM NAVIGATION -->
   <nav class="bottom-nav">
-    <button class="nav-btn active">
+    <button class="nav-btn active" data-screen="today" onclick="showScreen('today')">
       <span class="nav-icon">📅</span>
       <span class="nav-label">Today</span>
     </button>
-    <button class="nav-btn">
+    <button class="nav-btn" data-screen="customers" onclick="showScreen('customers')">
       <span class="nav-icon">👥</span>
       <span class="nav-label">Customers</span>
     </button>
-    <button class="nav-btn nav-btn-ai">
+    <button class="nav-btn nav-btn-ai" data-screen="insights" onclick="showScreen('insights')">
       <span class="nav-icon">✨</span>
       <span class="nav-label">Insights</span>
     </button>
-    <button class="nav-btn">
+    <button class="nav-btn" data-screen="settings" onclick="showScreen('settings')">
       <span class="nav-icon">⚙️</span>
       <span class="nav-label">Settings</span>
     </button>

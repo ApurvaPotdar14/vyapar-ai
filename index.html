@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vyapar AI — Mehta Traders</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="app-header">
+    <div class="brand">
+      <div class="brand-logo">MT</div>
+      <div class="brand-text">
+        <h1 id="business-name">Mehta Traders</h1>
+        <p id="business-category">Lubricant Distributor · Pune</p>
+      </div>
+    </div>
+    <div class="sync-badge">
+      <span class="dot"></span> SYNCED
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="app-main">
+
+    <!-- Greeting -->
+    <section class="greeting">
+      <h2 id="greeting-text">Good day, Mehta ji</h2>
+      <p class="subtitle">Here's what needs your attention today</p>
+    </section>
+
+    <!-- Urgent Action Banner -->
+    <section id="urgent-banner" class="urgent-banner">
+      <div class="urgent-icon">📞</div>
+      <div class="urgent-text">
+        <strong>URGENT ACTION NEEDED</strong>
+        <p id="urgent-count">Loading...</p>
+      </div>
+    </section>
+
+    <!-- Stats Row -->
+    <section class="stats-row">
+      <div class="stat-card stat-due">
+        <p class="stat-label">TOTAL DUE</p>
+        <h3 id="total-due">₹0</h3>
+        <p class="stat-sublabel" id="pending-count">0 pending orders</p>
+      </div>
+      <div class="stat-card stat-collected">
+        <p class="stat-label">COLLECTED (MONTH)</p>
+        <h3 id="total-collected">₹0</h3>
+        <p class="stat-sublabel" id="settled-count">0 orders settled</p>
+      </div>
+    </section>
+
+    <!-- Today's Calls -->
+    <section class="section">
+      <h3 class="section-title">📞 Call Today <span class="badge" id="today-badge">0</span></h3>
+      <div id="today-list" class="list"></div>
+    </section>
+
+    <!-- Overdue -->
+    <section class="section">
+      <h3 class="section-title">⚠️ Overdue <span class="badge badge-red" id="overdue-badge">0</span></h3>
+      <div id="overdue-list" class="list"></div>
+    </section>
+
+    <!-- Urgent (Tomorrow) -->
+    <section class="section">
+      <h3 class="section-title">🟠 Urgent — Tomorrow's Due <span class="badge" id="urgent-badge">0</span></h3>
+      <div id="urgent-list" class="list"></div>
+    </section>
+
+    <!-- Upcoming -->
+    <section class="section">
+      <h3 class="section-title">📅 Upcoming Reminders</h3>
+      <div id="upcoming-list" class="list"></div>
+    </section>
+
+  </main>
+
+  <!-- BOTTOM NAVIGATION -->
+  <nav class="bottom-nav">
+    <button class="nav-btn active">
+      <span class="nav-icon">📅</span>
+      <span class="nav-label">Today</span>
+    </button>
+    <button class="nav-btn">
+      <span class="nav-icon">👥</span>
+      <span class="nav-label">Customers</span>
+    </button>
+    <button class="nav-btn nav-btn-ai">
+      <span class="nav-icon">✨</span>
+      <span class="nav-label">Insights</span>
+    </button>
+    <button class="nav-btn">
+      <span class="nav-icon">⚙️</span>
+      <span class="nav-label">Settings</span>
+    </button>
+  </nav>
+
+  <!-- SCRIPTS -->
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

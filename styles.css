@@ -671,3 +671,177 @@ body {
 .order-history-amount strong {
   color: #1a1f2e;
 }
+
+/* ========== INSIGHTS SCREEN ========== */
+.ai-banner {
+  background: linear-gradient(135deg, #0f1729 0%, #1f2937 100%);
+  color: #fff;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 24px;
+  border: 1px solid #c9a76b;
+}
+
+.ai-banner-icon {
+  background: linear-gradient(135deg, #c9a76b 0%, #e89c3a 100%);
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.ai-banner-text strong {
+  display: block;
+  font-size: 13px;
+  letter-spacing: 1.2px;
+  color: #c9a76b;
+  margin-bottom: 4px;
+}
+
+.ai-banner-text p {
+  font-size: 12px;
+  color: #a8b0c2;
+}
+
+.insight-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 20px;
+  margin-bottom: 16px;
+  border: 1px solid #e8e2d4;
+}
+
+.insight-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.insight-title {
+  font-size: 16px;
+  font-family: Georgia, serif;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: #1a1f2e;
+}
+
+.insight-subtitle {
+  font-size: 12px;
+  color: #6a7080;
+  line-height: 1.4;
+}
+
+.btn-ai {
+  background: linear-gradient(135deg, #c9a76b 0%, #e89c3a 100%);
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  white-space: nowrap;
+  letter-spacing: 0.5px;
+}
+
+.btn-ai:hover {
+  opacity: 0.9;
+}
+
+.btn-ai:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.insight-output {
+  background: #f9f6ef;
+  border-radius: 10px;
+  padding: 16px;
+  min-height: 60px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #1a1f2e;
+}
+
+.insight-output .empty-state {
+  text-align: center;
+  color: #a8b0c2;
+  font-size: 13px;
+  padding: 12px;
+  font-style: italic;
+}
+
+.insight-output p {
+  margin-bottom: 12px;
+}
+
+.insight-output p:last-child {
+  margin-bottom: 0;
+}
+
+.insight-output strong {
+  color: #0f1729;
+  font-weight: 700;
+}
+
+.insight-output .loading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #c9a76b;
+  font-weight: 500;
+  font-size: 13px;
+}
+
+.insight-output .loading::before {
+  content: "⏳";
+  font-size: 16px;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* Customer reliability cards (inside Payment Behavior output) */
+.reliability-card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 8px;
+  border-left: 3px solid #c9a76b;
+}
+
+.reliability-card.risky {
+  border-left-color: #c44545;
+  background: #fdf0f0;
+}
+
+.reliability-card.reliable {
+  border-left-color: #2c6e5d;
+  background: #f0f7f3;
+}
+
+.reliability-name {
+  font-size: 14px;
+  font-weight: 600;
+  font-family: Georgia, serif;
+  margin-bottom: 4px;
+}
+
+.reliability-note {
+  font-size: 12px;
+  color: #6a7080;
+  line-height: 1.4;
+}

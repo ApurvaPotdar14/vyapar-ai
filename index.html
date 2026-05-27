@@ -112,14 +112,77 @@
 
     <!-- ========== INSIGHTS SCREEN ========== -->
     <div id="screen-insights" class="screen">
+
       <section class="greeting">
-        <h2>Insights</h2>
-        <p class="subtitle">AI-powered business intelligence</p>
+        <h2>✨ Insights</h2>
+        <p class="subtitle">AI-powered business intelligence for <span id="insights-business-name">Mehta Traders</span></p>
       </section>
-      <div class="empty-state" style="padding:40px 20px;">
-        ✨ AI Insights coming soon (Day 3)<br>
-        <small style="font-size:12px;">Weekly summary + Payment behavior analysis</small>
-      </div>
+
+      <!-- AI Status Banner -->
+      <section class="ai-banner">
+        <div class="ai-banner-icon">🤖</div>
+        <div class="ai-banner-text">
+          <strong>Powered by GPT-4o-mini</strong>
+          <p>Real-time business analysis from your Google Sheet data</p>
+        </div>
+      </section>
+
+      <!-- Weekly Summary Card -->
+      <section class="insight-card">
+        <div class="insight-card-header">
+          <div>
+            <h3 class="insight-title">📊 Weekly Business Summary</h3>
+            <p class="insight-subtitle">AI-generated overview of this week's performance</p>
+          </div>
+          <button id="btn-generate-summary" class="btn btn-ai" onclick="generateWeeklySummary()">
+            ✨ Generate
+          </button>
+        </div>
+        <div id="weekly-summary-output" class="insight-output">
+          <div class="empty-state">
+            Tap "Generate" to get this week's AI-written business summary
+          </div>
+        </div>
+      </section>
+
+      <!-- Payment Behavior Card -->
+      <section class="insight-card">
+        <div class="insight-card-header">
+          <div>
+            <h3 class="insight-title">💳 Payment Behavior Insights</h3>
+            <p class="insight-subtitle">Per-customer reliability + risk flags</p>
+          </div>
+          <button id="btn-payment-behavior" class="btn btn-ai" onclick="analyzePaymentBehavior()">
+            ✨ Analyze
+          </button>
+        </div>
+        <div id="payment-behavior-output" class="insight-output">
+          <div class="empty-state">
+            Tap "Analyze" to see which customers pay reliably and who needs attention
+          </div>
+        </div>
+      </section>
+
+      <!-- Send to WhatsApp Section -->
+      <section class="insight-card">
+        <div class="insight-card-header">
+          <div>
+            <h3 class="insight-title">📱 WhatsApp Delivery</h3>
+            <p class="insight-subtitle">Schedule summaries to your phone every Monday</p>
+          </div>
+          <button class="btn btn-success" onclick="alert('[DEMO] Weekly summary scheduled for Monday 9:00 AM IST to ' + BUSINESS.owner + ' via WhatsApp')">
+            📅 Schedule
+          </button>
+        </div>
+        <div class="insight-output">
+          <p style="font-size:13px; color:#6a7080;">
+            Currently set to: <strong>Every Monday, 9:00 AM IST</strong><br>
+            Recipient: <strong>Mehta ji</strong><br>
+            Status: <span style="color:#2c6e5d;">● Active (Demo mode)</span>
+          </p>
+        </div>
+      </section>
+
     </div>
 
     <!-- ========== SETTINGS SCREEN ========== -->

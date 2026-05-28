@@ -385,3 +385,126 @@ document.addEventListener("DOMContentLoaded", () => {
   renderTodayScreen();
   setupCustomerSearch();
 });
+
+// ===== AI INSIGHTS =====
+
+const WORKER_URL = "https://vyapar-ai-worker.aspotdar1496.workers.dev";
+
+async function callAI(prompt) {
+  try {
+    const response = await fetch(WORKER_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ prompt }),
+    });
+    const data = await response.json();
+    if (data.error) throw new Error(data.error);
+    return data.result;
+  } catch (error) {
+    throw new Error("AI request failed: " + error.message);
+  }
+}
+
+async function generateWeeklySummary() {
+  const btn = document.getElementById("btn-generate-summary");
+  const output = document.getElementById("weekly-summary-output");
+
+  // Show loading state
+  btn.disabled = true;
+  btn.textContent = "Generating...";
+  output.innerHTML = '<div class="loading">Analysing Mehta Traders data...</div>';
+
+  // Build prompt from real data
+  const totalDue = CUSTOMERS.reduce((sum, c) => {
+    const stats = getCustomerStats(c.id);
+    return sum + stats.totalDue;
+  }, 0);
+
+  const totalBusiness = CUSTOMERS.reduce((sum, c) => {
+    const stats = getCustomerStats(c.id);
+    return sum + stats.totalBusiness;
+  }, 0);
+
+  const overdueCustomers = CUSTOMERS.filter(c => {
+    const stats = getCustomerStats(c.id);
+    return stats.totalDue > 0;
+  }).map(c => c.name);
+
+  const prompt = `
+You are a business assistant for Mehta Traders, a lubricant distributor in Pune, India.
+
+Here is this week's business data:
+- Total business done: ₹${totalBusiness.toLocaleString("en-IN")}
+- Total amount collected: ₹${(totalBusiness - totalDue).toLocaleString("en-IN")}
+- Total pending/due: ₹${totalDue.toLocaleString("en-IN")}
+- Customers with pending payments: ${overdueCustomers.join(", ")}
+- Total active customers: ${CUSTOMERS.length}
+
+Write a short weekly business summary (3 short paragraphs):
+1. Overall performance this week
+2. Payment collection status and which customers need follow-up
+3. One specific action Mehta ji should take this week
+
+Keep it friendly, practical, and under 180 words. Address the owner as "Mehta ji".
+  `;
+
+  try {
+    const result = await callAI(prompt);
+    output.innerHTML = result
+      .split("\n")
+      .filter(line => line.trim())
+      .map(line => `<p>${line}</p>`)
+      .join("");
+  } catch (error) {
+    output.innerHTML = `<div style="color:#c44545;">⚠️ ${error.message}</div>`;
+  } finally {
+    btn.disabled = false;
+    btn.textContent = "✨ Generate";
+  }
+}
+
+async function analyzePaymentBehavior() {
+  const btn = document.getElementById("btn-payment-behavior");
+  const output = document.getElementById("payment-behavior-output");
+
+  // Show loading state
+  btn.disabled = true;
+  btn.textContent = "Analyzing...";
+  output.innerHTML = '<div class="loading">Analyzing customer payment patterns...</div>';
+
+  // Build customer payment data
+  const customerData = CUSTOMERS.map(c => {
+    const stats = getCustomerStats(c.id);
+    const reliability = stats.totalDue === 0 ? "fully paid" :
+      stats.totalDue > 10000 ? "high risk" : "moderate risk";
+    return `${c.name}: Total business ₹${stats.totalBusiness.toLocaleString("en-IN")}, Paid ₹${stats.totalPaid.toLocaleString("en-IN")}, Due ₹${stats.totalDue.toLocaleString("en-IN")} (${reliability})`;
+  }).join("\n");
+
+  const prompt = `
+You are a business analyst for Mehta Traders, a lubricant distributor in Pune, India.
+
+Here is the payment data for all customers:
+${customerData}
+
+Analyze the payment behavior and provide:
+1. Top 2 most reliable customers (pay on time)
+2. Top 2 highest risk customers (large dues)
+3. One practical collection strategy for Mehta ji
+
+Keep it under 150 words. Be specific with customer names and amounts.
+  `;
+
+  try {
+    const result = await callAI(prompt);
+    output.innerHTML = result
+      .split("\n")
+      .filter(line => line.trim())
+      .map(line => `<p>${line}</p>`)
+      .join("");
+  } catch (error) {
+    output.innerHTML = `<div style="color:#c44545;">⚠️ ${error.message}</div>`;
+  } finally {
+    btn.disabled = false;
+    btn.textContent = "✨ Analyze";
+  }
+}

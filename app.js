@@ -453,7 +453,7 @@ Keep it friendly, practical, and under 180 words. Address the owner as "Mehta ji
     output.innerHTML = result
       .split("\n")
       .filter(line => line.trim())
-      .map(line => `<p>${line}</p>`)
+      .map(line => `<p>${line.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')}</p>`)
       .join("");
   } catch (error) {
     output.innerHTML = `<div style="color:#c44545;">⚠️ ${error.message}</div>`;
@@ -499,7 +499,7 @@ Keep it under 150 words. Be specific with customer names and amounts.
     output.innerHTML = result
       .split("\n")
       .filter(line => line.trim())
-      .map(line => `<p>${line}</p>`)
+      .map(line => `<p>${line.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')}</p>`)
       .join("");
   } catch (error) {
     output.innerHTML = `<div style="color:#c44545;">⚠️ ${error.message}</div>`;
